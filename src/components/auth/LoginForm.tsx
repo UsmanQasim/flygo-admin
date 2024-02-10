@@ -6,31 +6,62 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { login, loginAgent } from "../../services/login.service";
 
 const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const [showPassWord, setShowPassWord] = useState(false);
-  const [formValues, setFormValues] = useState({
-    email: "Test@gmail.com",
-    password: "Test@123",
-  });
-  const { email, password } = formValues;
+  // const [formValues, setFormValues] = useState({
+  //   email: "Test@gmail.com",
+  //   password: "Test@123",
+  // });
+  // const { email, password } = formValues;
+
   const router = useRouter();
-  const handleUserValue = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormValues({ ...formValues, [event.target.name]: event.target.value });
-  };
-  const formSubmitHandle = (event: FormEvent) => {
+  // const handleUserValue = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setFormValues({ ...formValues, [event.target.name]: event.target.value });
+  // };
+
+  const formSubmitHandle = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (email === "Test@gmail.com" && password === "Test@123") {
+
+    const data = { email, password };
+    let res;
+
+    res = await login(data);
+    if (res?.success) {
+      window.localStorage.setItem("userData", JSON.stringify(res.data));
+      window.localStorage.setItem(
+        "accessToken",
+        JSON.stringify(res.data?.accessToken)
+      );
       Cookies.set("token", JSON.stringify(true));
       router.push("/dashboard");
-      toast.success("login successful");
+      toast.success("Login successful");
+    } else if (!res?.success) {
+      const role = "agent";
+      if (role === "agent") {
+        res = await loginAgent(data);
+        if (res?.success) {
+          window.localStorage.setItem("userData", JSON.stringify(res.data));
+          window.localStorage.setItem(
+            "accessToken",
+            JSON.stringify(res.data?.accessToken)
+          );
+          Cookies.set("token", JSON.stringify(true));
+          router.push("/dashboard");
+          toast.success("Login successful");
+        }
+      }
     } else {
-      alert("wrong email");
+      throw new Error("Invalid credentials");
     }
   };
 
   return (
-    <form className="theme-form" onSubmit={formSubmitHandle}>
+    <form className="theme-form" method="post" onSubmit={formSubmitHandle}>
       <h4>Sign in to account</h4>
       <p>Enter your email &amp; password to login</p>
       <div className="form-group">
@@ -40,11 +71,10 @@ const LoginForm = () => {
         <input
           type="email"
           required
-          placeholder="Test@gmail.com"
-          value={email}
           name="email"
           className="form-control"
-          onChange={handleUserValue}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="form-group">
@@ -52,11 +82,11 @@ const LoginForm = () => {
         <div className="form-input position-relative">
           <input
             type={showPassWord ? "text" : "password"}
-            placeholder="*********"
-            onChange={handleUserValue}
             value={password}
+            onChange={(e) => setPassword(e.target.value)}
             name="password"
             className="form-control"
+            autoComplete="new-password"
           />
           <div className="show-hide">
             <span
@@ -82,14 +112,14 @@ const LoginForm = () => {
           </button>
         </div>
       </div>
-      <h6 className="text-muted mt-4 or">Or Sign in with</h6>
-      <SocialIcons />
+      {/* <h6 className="text-muted mt-4 or">Or Sign in with</h6> */}
+      {/* <SocialIcons />
       <p className="mt-4 mb-0 text-center">
         Don't have account?
         <Link className="ms-2" href="/register">
           Create Account
         </Link>
-      </p>
+      </p> */}
     </form>
   );
 };

@@ -18,7 +18,7 @@ const WorldMap = () => {
                 ))
               }
             </Geographies> */}
-            error
+            World Graph TBC
           </ComposableMap>
         </div>
       </div>

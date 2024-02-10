@@ -1,4 +1,3 @@
-import React from "react";
 import DynamicFeatherIcon from "@/Common/DynamicFeatherIcon";
 import { growthCardData } from "@/data/Dashboard";
 
@@ -14,8 +13,12 @@ const GrowthCard = () => {
                   <span className="m-0">{data.title}</span>
                   <h4 className="mb-0 counter">
                     {data.counter}
-                    <span className={`badge ms-2 badge-light-${data.color} grow  `}>
-                      <DynamicFeatherIcon iconName={data.growth ? "TrendingUp" : "TrendingDown"}/>
+                    <span
+                      className={`badge ms-2 badge-light-${data.color} grow  `}
+                    >
+                      <DynamicFeatherIcon
+                        iconName={data.growth ? "TrendingUp" : "TrendingDown"}
+                      />
                       8.5%
                     </span>
                   </h4>

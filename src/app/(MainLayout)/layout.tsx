@@ -5,12 +5,10 @@ import Loader from "@/layouts/Loader";
 import SideBar from "@/layouts/SideBar/index";
 import ThemeCustomizer from "@/layouts/ThemeCustomizer/index";
 
-
-
 import { responsiveSideBar } from "@/redux-toolkit/reducers/ThemeCustomize";
 import { AppDispatch, RootState } from "@/redux-toolkit/store";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 const layout = ({ children }: { children: React.ReactNode }) => {
   const { toggleRtl } = useSelector((state: RootState) => state.ThemeCustomize);
   const dispatch = useDispatch<AppDispatch>();
@@ -20,7 +18,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
     } else {
       dispatch(responsiveSideBar(false));
     }
-  }; 
+  };
 
   useEffect(() => {
     modifiedSideBar();
@@ -40,30 +38,28 @@ const layout = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
   return (
-      <>
-      <Loader/>
-        <div className="page-wrapper compact-wrapper modern-type">
-          <Header />
-          <div className="page-body-wrapper">
-            <SideBar />
-            <div className="page-body">
-              {children}
-              <div className="container-fluid">
-                <footer className="footer">
-                  <div className="row">
-                    <div className="col-md-12 footer-copyright text-center">
-                      <p className="mb-0">
-                        Copyright 2023 © Rica theme by pixelstrap
-                      </p>
-                    </div>
+    <>
+      <Loader />
+      <div className="page-wrapper compact-wrapper modern-type">
+        <Header />
+        <div className="page-body-wrapper">
+          <SideBar />
+          <div className="page-body">
+            {children}
+            <div className="container-fluid">
+              <footer className="footer">
+                <div className="row">
+                  <div className="col-md-12 footer-copyright text-center">
+                    <p className="mb-0">Copyright 2024 © whetstonez</p>
                   </div>
-                </footer>
-              </div>
+                </div>
+              </footer>
             </div>
           </div>
         </div>
-        <ThemeCustomizer />
-      </>
+      </div>
+      <ThemeCustomizer />
+    </>
   );
 };
 

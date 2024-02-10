@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+} from "reactstrap";
 
 const VisitorChartHeader = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);

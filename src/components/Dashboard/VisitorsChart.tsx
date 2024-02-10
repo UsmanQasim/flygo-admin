@@ -18,7 +18,8 @@ const VisitorsChart = () => {
                 options={visitorOptions}
                 series={visitorOptions.series}
                 type="donut"
-                height={280}
+                height={270}
+                width={"100%"}
               />
             </div>
           </div>

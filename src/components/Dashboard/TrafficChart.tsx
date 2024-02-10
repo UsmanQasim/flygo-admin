@@ -4,11 +4,12 @@ import { trafficOptions } from "@/data/Dashboard/ChartData";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
-
 const TrafficChart = () => {
-  const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
+  const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+    ssr: false,
+  });
 
-    const [time, setTime] = useState("Month");
+  const [time, setTime] = useState("Month");
 
   let datas = ["Day", "Week", "Month"];
 
@@ -24,19 +25,25 @@ const TrafficChart = () => {
               <button
                 key={index}
                 onClick={() => setTime(data)}
-                className={`btn btn-outline-light btn-js1 ${time === data ? "active" : ""}`}
+                className={`btn btn-outline-light btn-js1 ${
+                  time === data ? "active" : ""
+                }`}
               >
                 {data}
               </button>
             ))}
           </div>
         </div>
-        <div className="card-body traffic-chart" style={{ position: "relative" }}>
+        <div
+          className="card-body traffic-chart"
+          style={{ position: "relative" }}
+        >
           <ReactApexChart
             options={trafficOptions}
             series={trafficOptions.series}
             type="area"
             height={370}
+            width={"100%"}
           />
         </div>
       </div>
