@@ -6,58 +6,46 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { login, loginAgent } from "../../services/login.service";
+import { login, loginAgent } from "@/services/login";
 
 const LoginForm = () => {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [showPassWord, setShowPassWord] = useState(false);
-  // const [formValues, setFormValues] = useState({
-  //   email: "Test@gmail.com",
-  //   password: "Test@123",
-  // });
-  // const { email, password } = formValues;
-
-  const router = useRouter();
-  // const handleUserValue = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setFormValues({ ...formValues, [event.target.name]: event.target.value });
-  // };
 
   const formSubmitHandle = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-
     const data = { email, password };
-    let res;
 
-    res = await login(data);
-    if (res?.success) {
-      window.localStorage.setItem("userData", JSON.stringify(res.data));
-      window.localStorage.setItem(
-        "accessToken",
-        JSON.stringify(res.data?.accessToken)
-      );
-      Cookies.set("token", JSON.stringify(true));
-      router.push("/dashboard");
-      toast.success("Login successful");
-    } else if (!res?.success) {
-      const role = "agent";
-      if (role === "agent") {
-        res = await loginAgent(data);
-        if (res?.success) {
-          window.localStorage.setItem("userData", JSON.stringify(res.data));
-          window.localStorage.setItem(
-            "accessToken",
-            JSON.stringify(res.data?.accessToken)
-          );
-          Cookies.set("token", JSON.stringify(true));
-          router.push("/dashboard");
-          toast.success("Login successful");
-        }
+    login(data).then((res) => {
+      if (res?.success) {
+        window.localStorage.setItem("userData", JSON.stringify(res.data));
+        window.localStorage.setItem(
+          "accessToken",
+          JSON.stringify(res.data?.accessToken)
+        );
+        Cookies.set("token", JSON.stringify(true));
+        router.push("/dashboard");
+        toast.success("Login successful");
+      } else if (!res?.success) {
+        loginAgent(data).then((res) => {
+          if (res?.success) {
+            window.localStorage.setItem("userData", JSON.stringify(res.data));
+            window.localStorage.setItem(
+              "accessToken",
+              JSON.stringify(res.data?.accessToken)
+            );
+            Cookies.set("token", JSON.stringify(true));
+            router.push("/dashboard");
+            toast.success("Login successful");
+          }
+        });
+      } else {
+        throw new Error("Invalid credentials");
       }
-    } else {
-      throw new Error("Invalid credentials");
-    }
+    });
   };
 
   return (
@@ -123,5 +111,4 @@ const LoginForm = () => {
     </form>
   );
 };
-
 export default LoginForm;
