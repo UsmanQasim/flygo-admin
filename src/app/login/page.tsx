@@ -15,8 +15,8 @@ const Login = () => {
             <div>
               <div>
                 <Link className="logo" href="/">
-                  <Image height={34} width={120} className="img-fluid for-light" src={`${ImagePath}/logo/logo-icon.png`} alt="looginpage"/>
-                  <Image height={34} width={120} className="img-fluid for-dark" src={`${ImagePath}/logo/logo-white.png`} alt="looginpage"/>
+                  <Image height={34} width={120} className="img-fluid for-light" src={`${ImagePath}/logo.png`} alt="looginpage"/>
+                  <Image height={34} width={120} className="img-fluid for-dark" src={`${ImagePath}/logo.png`} alt="looginpage"/>
                 </Link>
               </div>
               <div className="login-main">

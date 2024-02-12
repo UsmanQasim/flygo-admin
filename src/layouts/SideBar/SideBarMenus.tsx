@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import SimpleBar from "simplebar-react";
-import { MENUITEMS } from "./MenuItems";
+import { getSideBarItems } from "./MenuItems";
 import MenuList from "./SideBarItems";
 import { usePathname } from "next/navigation";
 
@@ -12,6 +12,7 @@ const SideBarMenus = () => {
   const [isOpen, setIsOpen] = useState([]);
   const [activeMenu, setActiveMenu] = useState([]);
 
+  const menuItem = getSideBarItems();
   const pathname = usePathname();
   // const [active, setActive] = useState(pathname ? pathname : "");
   // const [prev, setPrev] = useState<number>(0);
@@ -58,7 +59,12 @@ const SideBarMenus = () => {
               <i className="fa fa-angle-right ps-2" />
             </div>
           </li>
-          <MenuList menu={MENUITEMS} activeMenu={activeMenu} setActiveMenu={setActiveMenu} level={0}/>
+          <MenuList
+            menu={menuItem}
+            activeMenu={activeMenu}
+            setActiveMenu={setActiveMenu}
+            level={0}
+          />
           {/* <MenuList setActive={setActive} active={active} items={MENUITEMS} level={0} handleOpen={handleOpen}/> */}
         </SimpleBar>
       </ul>

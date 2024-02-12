@@ -10,7 +10,7 @@ const Register = () => {
     <div className="col-12 p-0">
       <div className="login-card">
         <div>
-          <div><Link className="logo" href="/"><img className="img-fluid for-light" src="../assets/images/logo/logo-icon.png" alt="looginpage" /><img className="img-fluid for-dark" src="../assets/images/logo/logo-white.png" alt="looginpage" /></Link></div>
+          <div><Link className="logo" href="/"><img className="img-fluid for-light" src="../assets/images/logo.png" alt="looginpage" /><img className="img-fluid for-dark" src="../assets/images/logo.png" alt="looginpage" /></Link></div>
           <div className="login-main">
             <form className="theme-form" onSubmit={(event: React.FormEvent<HTMLFormElement>)=>event.preventDefault()}>
               <h4>Create your account</h4>

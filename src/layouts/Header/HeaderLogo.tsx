@@ -13,8 +13,8 @@ const HeaderLogo = () => {
     <div className="header-logo-wrapper col-auto p-0">
       <div className="logo-wrapper">
         <Link href="/dashboard">
-          <Image height={31.78} width={120.19} className="img-fluid main-logo" src={`${ImagePath}/logo/logo.png`} alt="logo"/>
-          <Image height={31.78} width={120.19} className="img-fluid white-logo" src={`${ImagePath}/logo/logo-white.png`} alt="logo"/>
+          <Image height={31.78} width={120.19} className="img-fluid main-logo" src='./assets/images/logo.png' alt="logo"/>
+          <Image height={31.78} width={120.19} className="img-fluid white-logo" src='./assets/images/logo.png' alt="logo"/>
         </Link>
       </div>
       <div className="toggle-sidebar" defaultChecked>

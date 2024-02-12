@@ -21,23 +21,21 @@ const LoginForm = () => {
 
     login(data).then((res) => {
       if (res?.success) {
-        window.localStorage.setItem("userData", JSON.stringify(res.data));
-        window.localStorage.setItem(
-          "accessToken",
-          JSON.stringify(res.data?.accessToken)
-        );
+        Cookies.set("userData", JSON.stringify(res.data));
+        Cookies.set("accessToken", JSON.stringify(res.data?.accessToken));
         Cookies.set("token", JSON.stringify(true));
+        Cookies.set("user", JSON.stringify(true));
+        Cookies.set("userData", JSON.stringify(res.data));
         router.push("/dashboard");
         toast.success("Login successful");
       } else if (!res?.success) {
         loginAgent(data).then((res) => {
           if (res?.success) {
-            window.localStorage.setItem("userData", JSON.stringify(res.data));
-            window.localStorage.setItem(
-              "accessToken",
-              JSON.stringify(res.data?.accessToken)
-            );
+            Cookies.set("userData", JSON.stringify(res.data));
+            Cookies.set("accessToken", JSON.stringify(res.data?.accessToken));
             Cookies.set("token", JSON.stringify(true));
+            Cookies.set("user", JSON.stringify(false));
+            Cookies.set("userData", JSON.stringify(res.data));
             router.push("/dashboard");
             toast.success("Login successful");
           }

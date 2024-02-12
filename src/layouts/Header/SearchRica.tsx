@@ -19,7 +19,7 @@ const SearchRica = ({searchBarOpen,setSearchBarOpen}:{searchBarOpen:boolean,setS
               <input
                 className="demo-input Typeahead-input form-control-plaintext w-100 tt-input"
                 type="text"
-                placeholder="Search Rica .."
+                placeholder="Search FlyGo .."
                 style={{ position: "relative", verticalAlign: "top" }}
               />
               <pre

@@ -1,7 +1,54 @@
 import DynamicFeatherIcon from "@/Common/DynamicFeatherIcon";
-import { growthCardData } from "@/data/Dashboard";
+import { GetDashboard } from "@/services/dashboard";
+import { useEffect, useState } from "react";
 
 const GrowthCard = () => {
+  const [dashboardData, setDashboardData] = useState<any>({});
+
+  useEffect(() => {
+    const fetchData = () => {
+      GetDashboard()
+        .then((res) => setDashboardData(res))
+        .catch((error) => console.error("Error fetching booking data:", error));
+    };
+
+    fetchData();
+  }, []);
+  console.log(Object.values(dashboardData), "data");
+  console.log(dashboardData, "data");
+
+  const growthCardData = [
+    {
+      color: "primary",
+      title: "Wallet",
+      counter: dashboardData?.wallet || 0,
+      icon: "DollarSign",
+      growth: true,
+      number: "1-bg",
+    },
+    {
+      color: "secondary",
+      title: "Transaction Limit",
+      counter: dashboardData?.transactionLimit || 0,
+      icon: "Pocket",
+      growth: true,
+      number: "3-bg",
+    },
+    {
+      color: "danger",
+      title: "Total Booking",
+      counter: dashboardData?.totalBookings || 0,
+      icon: "ShoppingBag",
+      number: "2-bg",
+    },
+    {
+      color: "success",
+      title: "Total User",
+      counter: dashboardData?.totalUser || 0,
+      icon: "UserPlus",
+      number: "4-bg",
+    },
+  ];
   return (
     <>
       {growthCardData.map((data, index) => (
@@ -16,15 +63,17 @@ const GrowthCard = () => {
                     <span
                       className={`badge ms-2 badge-light-${data.color} grow  `}
                     >
-                      <DynamicFeatherIcon
+                      {/* <DynamicFeatherIcon
                         iconName={data.growth ? "TrendingUp" : "TrendingDown"}
                       />
-                      8.5%
+                      8.5% */}
                     </span>
                   </h4>
                 </div>
                 <div className="align-self-center text-center">
-                  <DynamicFeatherIcon iconName={data.icon} />
+                  <DynamicFeatherIcon
+                    iconName={data.growth ? "TrendingUp" : "TrendingDown"}
+                  />
                 </div>
               </div>
             </div>

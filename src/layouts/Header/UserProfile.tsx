@@ -2,22 +2,43 @@ import DynamicFeatherIcon from "@/Common/DynamicFeatherIcon";
 import { userProfileData } from "@/data/layout";
 import { Admin, ImagePath, LogOut } from "@/utils/Constant";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Href } from "../../utils/Constant";
 import LogOutModal from "./LogOutModal";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 const UserProfile = () => {
-  const [modalOpen, setModalOpen] = useState(false)
-  const toggle = () => setModalOpen(!modalOpen)
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggle = () => setModalOpen(!modalOpen);
+  const userDataString = Cookies.get("user");
+  const userData: any = Cookies.get("userData");
+  const [role, setRole] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [adminName, setAdminName] = useState("");
+
+  useEffect(() => {
+    if (userDataString) {
+      setRole(JSON.parse(userDataString));
+      setUserName(JSON.parse(userData)?.representativeName);
+      setAdminName(JSON.parse(userData)?.name);
+    }
+  }, [userDataString]);
+
   return (
     <li className="profile-nav onhover-dropdown pe-0 me-0">
       <div className="media profile-media">
-        <Image height={40} width={40} className="user-profile rounded-circle" src={`${ImagePath}/users/4.jpg`} alt="profile-picture" />
+        <Image
+          height={40}
+          width={40}
+          className="user-profile rounded-circle"
+          src={`${ImagePath}/users/4.jpg`}
+          alt="profile-picture"
+        />
         <div className="user-name-hide media-body">
-          <span>Emay Walter</span>
+          <span>{role ? adminName : userName}</span>
           <p className="mb-0 font-roboto">
-            {Admin} <i className="middle fa fa-angle-down" />
+            {role ? "Admin" : "Agent"} <i className="middle fa fa-angle-down" />
           </p>
         </div>
       </div>

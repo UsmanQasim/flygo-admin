@@ -11,6 +11,8 @@ const LogOutModal = ({ modal, toggle }: LogOutModalInterFace) => {
   const router = useRouter();
   const handleLogout = () => {
     Cookies.remove("token");
+    Cookies.remove("user");
+    Cookies.remove("userData");
     router.push("/auth/login");
     toast.error("logout successful");
   };

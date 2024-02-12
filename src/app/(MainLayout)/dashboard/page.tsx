@@ -17,8 +17,8 @@ const Dashboard: React.FC = () => {
         <EarningChart />
         <BookingHistory />
         <Calender />
-        <TrafficChart />
-        error
+        {/* <TrafficChart /> */}
+        {/* error */}
         {/* <WorldMap /> */}
         {/* <Tours /> */}
       </div>
