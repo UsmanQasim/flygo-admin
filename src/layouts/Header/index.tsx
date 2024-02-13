@@ -11,23 +11,28 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux-toolkit/store";
 
 const Header = () => {
-  const { toggleSideBar } = useSelector((state: RootState) => state.ThemeCustomize);
-const [searchBarOpen, setSearchBarOpen] = useState(false)
+  const { toggleSideBar } = useSelector(
+    (state: RootState) => state.ThemeCustomize
+  );
+  const [searchBarOpen, setSearchBarOpen] = useState(false);
   return (
-    <div className={`page-header ${toggleSideBar ?"close_icon":""}`}>
+    <div className={`page-header ${toggleSideBar ? "close_icon" : ""}`}>
       <div className="header-wrapper row m-0">
         <HeaderLogo />
-        <SearchRica searchBarOpen={searchBarOpen} setSearchBarOpen={setSearchBarOpen} />
+        {/* <SearchRica
+          searchBarOpen={searchBarOpen}
+          setSearchBarOpen={setSearchBarOpen}
+        /> */}
         <div className="nav-right col-4 pull-right right-header p-0">
           <ul className="nav-menus">
-            <li onClick={()=>setSearchBarOpen(!searchBarOpen)}>
+            <li onClick={() => setSearchBarOpen(!searchBarOpen)}>
               <span className="header-search">
                 <DynamicFeatherIcon iconName="Search" />
               </span>
             </li>
-            <NotificationBox />
+            {/* <NotificationBox /> */}
             <DarkMode />
-            <MessageBox />
+            {/* <MessageBox /> */}
             <FullScreen />
             <UserProfile />
           </ul>

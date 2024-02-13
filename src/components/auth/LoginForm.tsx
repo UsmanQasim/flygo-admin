@@ -31,7 +31,6 @@ const LoginForm = () => {
       } else if (!res?.success) {
         loginAgent(data).then((res) => {
           if (res?.success) {
-            Cookies.set("userData", JSON.stringify(res.data));
             Cookies.set("accessToken", JSON.stringify(res.data?.accessToken));
             Cookies.set("token", JSON.stringify(true));
             Cookies.set("user", JSON.stringify(false));

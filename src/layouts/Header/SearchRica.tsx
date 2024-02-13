@@ -1,9 +1,17 @@
 import React from "react";
-import DynamicFeatherIcon from '@/Common/DynamicFeatherIcon';
+import DynamicFeatherIcon from "@/Common/DynamicFeatherIcon";
 
-const SearchRica = ({searchBarOpen,setSearchBarOpen}:{searchBarOpen:boolean,setSearchBarOpen:(val:boolean)=>void}) => {
+const SearchRica = ({
+  searchBarOpen,
+  setSearchBarOpen,
+}: {
+  searchBarOpen: boolean;
+  setSearchBarOpen: (val: boolean) => void;
+}) => {
   return (
-    <form className={`form-inline search-full col ${searchBarOpen?"open":""} `}>
+    <form
+      className={`form-inline search-full col ${searchBarOpen ? "open" : ""} `}
+    >
       <div className="form-group w-100">
         <div className="Typeahead Typeahead--twitterUsers">
           <div className="u-posRelative">
@@ -14,7 +22,16 @@ const SearchRica = ({searchBarOpen,setSearchBarOpen}:{searchBarOpen:boolean,setS
               <input
                 className="demo-input Typeahead-input form-control-plaintext w-100 tt-hint"
                 type="text"
-                style={{position: "absolute",top: 0,left: 0,borderColor: "transparent",boxShadow: "none",opacity: 1,background:"none 0% 0% / auto repeat scroll padding-box border-box rgb(242, 249, 252)",}}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  borderColor: "transparent",
+                  boxShadow: "none",
+                  opacity: 1,
+                  background:
+                    "none 0% 0% / auto repeat scroll padding-box border-box rgb(242, 249, 252)",
+                }}
               />
               <input
                 className="demo-input Typeahead-input form-control-plaintext w-100 tt-input"
@@ -24,13 +41,27 @@ const SearchRica = ({searchBarOpen,setSearchBarOpen}:{searchBarOpen:boolean,setS
               />
               <pre
                 aria-hidden="true"
-                style={{position: "absolute",visibility: "hidden",whiteSpace: "pre",fontFamily: "Nunito, sans-serif, sans-serif",fontSize: 16,fontStyle: "normal",fontVariant: "normal",fontWeight: 400,wordSpacing: 0,letterSpacing: 0,textIndent: 0,textRendering: "auto",textTransform: "none",}}
+                style={{
+                  position: "absolute",
+                  visibility: "hidden",
+                  whiteSpace: "pre",
+                  fontFamily: "Nunito, sans-serif, sans-serif",
+                  fontSize: 16,
+                  fontStyle: "normal",
+                  fontVariant: "normal",
+                  fontWeight: 400,
+                  wordSpacing: 0,
+                  letterSpacing: 0,
+                  textIndent: 0,
+                  textRendering: "auto",
+                  textTransform: "none",
+                }}
               />
             </span>
-            <DynamicFeatherIcon iconName="X"  className="close-search" onClick={()=>setSearchBarOpen(!searchBarOpen)} />
+            {/* <DynamicFeatherIcon iconName="X"  className="close-search" onClick={()=>setSearchBarOpen(!searchBarOpen)} />
             <div className="spinner-border Typeahead-spinner" role="status">
               <span className="sr-only">Loading...</span>
-            </div>
+            </div> */}
           </div>
           <div className="Typeahead-menu">
             <div className="tt-dataset tt-dataset-0" />

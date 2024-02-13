@@ -8,6 +8,7 @@
   background-color: rgba($white, 0.5);
 
   @media only screen and (min-width: 1280px) {
+
     .apache-cotainer-large,
     #line-visual,
     #line-visulH {
@@ -17,7 +18,7 @@
         width: 100% !important;
       }
     }
-    
+
 
     .left-header {
 
@@ -35,6 +36,7 @@
         padding-top: 40px;
         margin-top: 0 !important;
       }
+
       &.compact-wrapper {
         margin-top: $box-layout-space;
 
@@ -930,9 +932,7 @@
 
 }
 
-.page-wrapper {
-  
-}
+.page-wrapper {}
 
 /**=====================
     63. Box-layout CSS ends

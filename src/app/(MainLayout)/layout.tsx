@@ -44,7 +44,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         <Header />
         <div className="page-body-wrapper">
           <SideBar />
-          <div className="page-body">
+          <div className="page-body d-flex flex-column justify-content-between">
             {children}
             <div className="container-fluid">
               <footer className="footer">

@@ -12,13 +12,14 @@ const UserProfile = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const toggle = () => setModalOpen(!modalOpen);
   const userDataString = Cookies.get("user");
-  const userData: any = Cookies.get("userData");
+
   const [role, setRole] = useState(false);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState<string | null>("");
   const [adminName, setAdminName] = useState("");
 
   useEffect(() => {
-    if (userDataString) {
+    const userData = localStorage.getItem("userData");
+    if (userDataString && userData) {
       setRole(JSON.parse(userDataString));
       setUserName(JSON.parse(userData)?.representativeName);
       setAdminName(JSON.parse(userData)?.name);
@@ -28,13 +29,13 @@ const UserProfile = () => {
   return (
     <li className="profile-nav onhover-dropdown pe-0 me-0">
       <div className="media profile-media">
-        <Image
+        {/* <Image
           height={40}
           width={40}
           className="user-profile rounded-circle"
           src={`${ImagePath}/users/4.jpg`}
           alt="profile-picture"
-        />
+        /> */}
         <div className="user-name-hide media-body">
           <span>{role ? adminName : userName}</span>
           <p className="mb-0 font-roboto">

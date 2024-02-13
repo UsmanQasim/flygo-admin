@@ -31,7 +31,7 @@ const AllCars = () => {
                 </div>
               </div>
             </div>
-            <PaginationBox />
+            {/* <PaginationBox /> */}
           </div>
         </div>
       </div>

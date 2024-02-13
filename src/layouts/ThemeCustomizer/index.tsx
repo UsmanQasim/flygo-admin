@@ -15,9 +15,9 @@ const ThemeCustomizer = () => {
   };
   return (
     <div className="customizer-links">
-      <button onClick={handleLtr} className={`rtl-btn ${Ltr ? "rtl" : ""}`}>
+      {/* <button onClick={handleLtr} className={`rtl-btn ${Ltr ? "rtl" : ""}`}>
         {Ltr ? "LTR" : "RTL"}
-      </button>
+      </button> */}
     </div>
   );
 };

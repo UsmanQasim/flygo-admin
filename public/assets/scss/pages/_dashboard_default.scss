@@ -32,9 +32,11 @@
     }
   }
 }
+
 .custom-map {
   overflow: hidden;
 }
+
 .profile-greeting {
   // background-image: url(../../images/dashboard/bg.jpg);
   background-size: cover !important;
@@ -230,6 +232,7 @@
         ul {
           li {
             position: relative;
+
             &:before {
               content: "";
               position: absolute;
@@ -344,6 +347,7 @@
             .small-chart2 {
               svg {
                 .ct-series-a {
+
                   .ct-point,
                   .ct-line,
                   .ct-bar,
@@ -353,6 +357,7 @@
                 }
 
                 .ct-series-b {
+
                   .ct-point,
                   .ct-line,
                   .ct-bar,
@@ -381,6 +386,7 @@
 
               svg {
                 .ct-series-a {
+
                   .ct-point,
                   .ct-line,
                   .ct-bar,
@@ -390,6 +396,7 @@
                 }
 
                 .ct-series-b {
+
                   .ct-point,
                   .ct-line,
                   .ct-bar,
@@ -485,12 +492,15 @@
 
 .main-logo {
   display: block;
+
   [class="dark-only"] & {
     display: none;
   }
 }
+
 .white-logo {
   display: none;
+
   [class="dark-only"] & {
     display: block;
   }
@@ -538,6 +548,7 @@
       border: none !important;
     }
   }
+
   .card-header-right-icon {
     .dropdown {
       .dropdown-toggle {
@@ -547,6 +558,7 @@
         padding: 5px 15px;
         width: 100px;
         text-align: left;
+
         &:after {
           position: absolute;
           top: 50%;
@@ -560,11 +572,13 @@
           margin: 0;
         }
       }
+
       .dropdown-menu {
         -webkit-box-shadow: 0 0 20px rgba(89, 102, 122, 0.1);
         box-shadow: 0 0 20px rgba(89, 102, 122, 0.1);
         border: none;
         padding: 0;
+
         .dropdown-item {
           color: #2b2b2b;
           opacity: 0.6;
@@ -572,6 +586,7 @@
           padding: 6px 12px;
           border-top: 1px solid $light-semi-gray;
           background: $white;
+
           &:hover {
             background-color: $white;
           }
@@ -579,6 +594,7 @@
       }
     }
   }
+
   .bottom-btn {
     text-align: center;
     font-size: 18px;
@@ -892,6 +908,7 @@
                 }
 
                 @keyframes wave {
+
                   0%,
                   60%,
                   100% {
@@ -1130,8 +1147,8 @@
 //index dashboard css ends
 
 .crm-activity {
-  > li {
-    + li {
+  >li {
+    +li {
       border-top: 1px solid $light-semi-gray;
       margin-top: 10px;
       padding-top: 10px;
@@ -1163,7 +1180,7 @@
       display: inline-block;
       line-height: 1;
 
-      + li {
+      +li {
         border-left: 1px solid $light-semi-gray;
         padding-left: 10px;
         margin-left: 5px;
@@ -1178,6 +1195,7 @@
   box-shadow: none;
   border: 1px solid #f1f3ff !important;
   border-radius: 5px;
+
   .total-num {
     color: $theme-body-font-color;
     margin: 0;
@@ -1320,7 +1338,7 @@
     .media-body {
       text-align: left;
 
-      > span {
+      >span {
         color: $theme-body-sub-title-color;
       }
 
@@ -1385,6 +1403,7 @@
     margin-bottom: 30px;
     font-size: 16px;
   }
+
   h4 {
     font-size: $btn-lg-font-size;
   }
@@ -1411,9 +1430,11 @@
     text-align: center;
     column-count: 3;
     column-rule: 1px solid $light-color;
+
     p {
       margin-bottom: 5px;
     }
+
     span {
       margin-bottom: 0;
       color: $theme-body-sub-title-color;
@@ -1432,6 +1453,7 @@
 }
 
 .testimonial {
+
   #owl-carousel-testimonial,
   #owl-carousel-testimonial-rtl {
     .owl-stage-outer {
@@ -1492,14 +1514,17 @@
   .datepicker {
     padding: 20px;
     border-radius: 20px;
+
     .datepicker--nav {
       border-bottom: none;
     }
+
     .datepicker--cell-day.-other-month-,
     .datepicker--cell-year.-other-decade- {
       opacity: 0.5;
     }
   }
+
   .cal-info h2 {
     font-size: 100px;
     color: $light-gray;
@@ -1512,11 +1537,13 @@
   height: 365px;
   border-radius: 20px;
   overflow: hidden;
+
   .card-body {
     .media {
       margin-bottom: 10px;
     }
   }
+
   svg {
     path.climacon_component-stroke {
       fill: $white;
@@ -1714,6 +1741,7 @@
 //chart widget css
 
 .chart-widget-top {
+
   #chart-widget1,
   #chart-widget2,
   #chart-widget3 {
@@ -1995,6 +2023,7 @@
 
 .live-products {
   .ct-series-a {
+
     .ct-area,
     .ct-point,
     .ct-line,
@@ -2018,6 +2047,7 @@
 .uses,
 .monthly {
   .ct-series-a {
+
     .ct-area,
     .ct-point,
     .ct-line,
@@ -2029,6 +2059,7 @@
   }
 
   .ct-series-b {
+
     .ct-area,
     .ct-point,
     .ct-line,
@@ -2040,6 +2071,7 @@
   }
 
   .ct-series-c {
+
     .ct-area,
     .ct-point,
     .ct-line,
@@ -2200,6 +2232,7 @@ span.twitter-typeahead {
     border-top: 1px solid $light-semi-gray;
     background: $white;
     cursor: pointer;
+
     &:hover,
     &:focus {
       background-color: $white;
@@ -2407,7 +2440,7 @@ footer {
 
   .chart_data_left {
     .row {
-      > div {
+      >div {
         .media {
           .right-chart-content {
             margin-left: 10px !important;
@@ -2427,7 +2460,7 @@ footer {
 @media screen and (max-width: 1366px) {
   .chart_data_left {
     .row {
-      > div {
+      >div {
         &:first-child {
           .media {
             padding-left: 40px;
@@ -2467,8 +2500,8 @@ footer {
     overflow: hidden;
 
     .card-body {
-      > .row {
-        > div {
+      >.row {
+        >div {
           flex: 0 0 100%;
           max-width: 100%;
 
@@ -2479,7 +2512,7 @@ footer {
               margin-bottom: 0;
               display: inline-block;
 
-              + .left_side_earning {
+              +.left_side_earning {
                 flex: 0 0 33%;
                 max-width: 33%;
               }
@@ -2574,10 +2607,10 @@ footer {
     margin-top: 0;
 
     .card-body {
-      > .row {
-        > div {
+      >.row {
+        >div {
           .row {
-            > div {
+            >div {
               &:last-child {
                 padding-left: 0;
               }
@@ -2590,7 +2623,7 @@ footer {
 
           .chart-left {
             .left_side_earning {
-              + .left_side_earning {
+              +.left_side_earning {
                 flex: 0 0 50%;
                 max-width: 50%;
               }
@@ -2612,7 +2645,7 @@ footer {
         }
 
         .border-top {
-          > div {
+          >div {
             &:last-child {
               margin-top: 40px;
             }
@@ -2638,9 +2671,9 @@ footer {
     }
 
     .row {
-      > div {
-        + div {
-          + div {
+      >div {
+        +div {
+          +div {
             .media {
               padding-top: 0 !important;
             }
@@ -2684,9 +2717,9 @@ footer {
     }
 
     .card-body {
-      > .row {
+      >.row {
         .border-top {
-          > div {
+          >div {
             &:last-child {
               margin-top: 20px;
             }
@@ -2697,7 +2730,7 @@ footer {
           padding-bottom: 20px;
         }
 
-        > div {
+        >div {
           .chart-left {
             padding: 20px;
 
@@ -2730,7 +2763,7 @@ footer {
     }
 
     .row {
-      > div {
+      >div {
         .media {
           &:first-child {
             padding-left: 20px;
@@ -2810,13 +2843,13 @@ footer {
   .dashboard-sec {
     .earning-card {
       .card-body {
-        > .row {
-          > div {
+        >.row {
+          >div {
             .chart-right {
-              > .row {
+              >.row {
                 ul {
                   li {
-                    + li {
+                    +li {
                       margin-left: 25px;
                     }
                   }
@@ -2843,7 +2876,8 @@ footer {
         .media {
           border-right: none;
         }
-        > div {
+
+        >div {
           &:nth-child(3) {
             border-right: 1px solid $light-gray;
           }
@@ -2887,7 +2921,7 @@ footer {
     .card {
       .card-body {
         .row {
-          > div {
+          >div {
             .media {
               padding: 15px;
             }
@@ -2911,15 +2945,15 @@ footer {
 
   .earning-card {
     .card-body {
-      > .row {
-        > div {
+      >.row {
+        >div {
           .chart-left {
             padding: 15px;
 
             .left_side_earning {
               margin-bottom: 15px;
 
-              + .left_side_earning,
+              +.left_side_earning,
               &:first-child {
                 flex: 0 0 100%;
                 max-width: 100%;
@@ -2958,8 +2992,8 @@ footer {
         }
 
         .border-top {
-          > div {
-            + div {
+          >div {
+            +div {
               margin-top: 15px;
               padding: 0;
 
@@ -2988,13 +3022,13 @@ footer {
   .dashboard-sec {
     .earning-card {
       .card-body {
-        > .row {
-          > div {
+        >.row {
+          >div {
             .chart-right {
-              > .row {
+              >.row {
                 ul {
                   li {
-                    + li {
+                    +li {
                       margin-left: 15px;
                     }
                   }
@@ -3003,7 +3037,7 @@ footer {
                 .inner-top-right {
                   ul {
                     li {
-                      + li {
+                      +li {
                         margin-left: 28px;
                       }
                     }
@@ -3030,7 +3064,7 @@ footer {
   .news {
     .card {
       .card-body {
-        > .news-update {
+        >.news-update {
           padding: 15px;
         }
       }
@@ -3148,9 +3182,11 @@ footer {
     }
   }
 }
+
 .footer {
   margin-left: unset !important;
 }
+
 @media only screen and (max-width: 360px) {
   .footer {
     padding-left: 0 !important;
@@ -3192,15 +3228,18 @@ footer {
   box-shadow: none;
   height: 300px;
   position: relative;
+
   &:hover {
     box-shadow: none;
   }
+
   &__content {
     h2 {
       font-size: 21px;
       font-weight: 500;
       margin: 0;
     }
+
     p {
       font-size: 16px;
       margin-bottom: 16px;
@@ -3224,10 +3263,12 @@ footer {
     }
   }
 }
+
 .earning-cards {
   height: 300px;
   position: relative;
   overflow: hidden;
+
   &-header {
     background-image: linear-gradient(0.25turn, red, 10%, blue);
     width: 100%;
@@ -3247,10 +3288,12 @@ footer {
       height: 70px;
       border: 5px solid #fff;
     }
+
     h2 {
       font-size: 20px;
       font-weight: 700;
     }
+
     h4 {
       font-size: 18px;
     }
@@ -3265,6 +3308,7 @@ footer {
      FlyGo Dashboard   CSS End
 ==========================**/
 .card-header-title {
+
   h4,
   h5 {
     margin: 0;
@@ -3272,11 +3316,13 @@ footer {
     font-size: calc(14px + (24 - 14) * ((100vw - 320px) / (1920 - 320))) !important;
   }
 }
+
 .dropdown {
   .dropdown-toggle {
     background-color: rgba($primary-color, 0.12) !important;
   }
 }
+
 .apexcharts-toolbar {
   display: none !important;
 }
@@ -3286,14 +3332,17 @@ footer {
     .align-self-center {
       background-color: rgba($primary-color, 0.12);
     }
+
     svg {
       color: var(--theme-deafult);
     }
   }
 }
+
 .static-top-widget {
   .align-self-center {
     transition: all 0.5s;
+
     svg {
       transition: all 0.5s;
     }
@@ -3305,6 +3354,7 @@ footer {
     .static-top-widget {
       .align-self-center {
         background-color: $primary-color;
+
         svg {
           color: $white;
         }
@@ -3312,11 +3362,13 @@ footer {
     }
   }
 }
+
 .card:hover {
   .custome-2-bg {
     .static-top-widget {
       .align-self-center {
         background-color: $warning-color;
+
         svg {
           color: $white;
         }
@@ -3324,11 +3376,13 @@ footer {
     }
   }
 }
+
 .card:hover {
   .custome-3-bg {
     .static-top-widget {
       .align-self-center {
         background-color: $secondary-color;
+
         svg {
           color: $white;
         }
@@ -3336,11 +3390,13 @@ footer {
     }
   }
 }
+
 .card:hover {
   .custome-4-bg {
     .static-top-widget {
       .align-self-center {
         background-color: $success-color;
+
         svg {
           color: $white;
         }
@@ -3354,26 +3410,31 @@ footer {
     .align-self-center {
       background-color: rgba($warning-color, 0.12);
     }
+
     svg {
       color: $warning-color;
     }
   }
 }
+
 .custome-3-bg {
   .static-top-widget {
     .align-self-center {
       background-color: rgba($secondary-color, 0.12);
     }
+
     svg {
       color: var(--theme-secondary);
     }
   }
 }
+
 .custome-4-bg {
   .static-top-widget {
     .align-self-center {
       background-color: rgba($success-color, 0.12);
     }
+
     svg {
       color: $success-color;
     }
@@ -3382,10 +3443,11 @@ footer {
 
 .media {
   .media-body {
-    > span {
+    >span {
       color: $grey-13;
     }
   }
+
   h4 {
     margin-top: 5px;
     font-weight: 600;
@@ -3400,6 +3462,7 @@ footer {
     width: 45px;
     height: 45px;
     border-radius: 100%;
+
     svg {
       height: 25px !important;
       width: 25px !important;
@@ -3410,9 +3473,11 @@ footer {
 .place-box {
   margin-top: 10px;
 }
+
 .grow {
   font-size: 12px;
   vertical-align: bottom;
+
   svg {
     width: 13px;
     height: 13px;
@@ -3421,6 +3486,7 @@ footer {
     padding-top: 0;
   }
 }
+
 .datepicker-dashboard {
   .datepicker {
     width: auto;
@@ -3430,6 +3496,7 @@ footer {
   .datepicker--cells-days {
     height: 280px;
   }
+
   // .datepicker--nav-title i {
   //   color: $danger-color;
   // }
@@ -3438,17 +3505,20 @@ footer {
     font-size: 20px;
     padding: 22px 9px;
   }
+
   .datepicker--days-names {
     // color: $danger-color;
     font-size: 18px;
     margin: 30px 0;
   }
+
   // .datepicker--day-name {
   //   color: $danger-color;
   // }
   .datepicker--cells-days {
     font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
   }
+
   // .datepicker--cell {
   //   &.-current- {
   //     border-color: $danger-color;
@@ -3461,6 +3531,7 @@ footer {
   //   }
   // }
 }
+
 ////tour slider section
 .category-box {
   border-radius: 25px;
@@ -3476,10 +3547,12 @@ footer {
     .img-category-box {
       border-radius: 25px;
     }
+
     .top-bar {
       position: absolute;
       top: 25px;
       left: 25px;
+
       h5 {
         font-size: calc(13px + (16 - 13) * ((100vw - 320px) / (1920 - 320)));
         color: $white;
@@ -3513,6 +3586,7 @@ footer {
         margin-bottom: 12px;
       }
     }
+
     .like-cls {
       position: absolute;
       right: 13%;
@@ -3529,6 +3603,7 @@ footer {
       }
     }
   }
+
   .content-category {
     padding: 60px 35px 25px 35px;
     background-color: $white;
@@ -3552,18 +3627,21 @@ footer {
         font-weight: 800;
         margin-right: 15px;
       }
+
       .rating {
         i {
           color: $star-color;
         }
       }
     }
+
     h6 {
       font-size: calc(13px + (16 - 13) * ((100vw - 320px) / (1920 - 320)));
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: $grey-9;
+
       span {
         color: $secondary-color;
         text-transform: uppercase;
@@ -3571,23 +3649,30 @@ footer {
         font-size: calc(12px + (16 - 12) * ((100vw - 320px) / (1920 - 320)));
       }
     }
+
     p {
       color: $grey-9;
     }
   }
 }
+
 .dashboard-tours,
 .image_section {
+
   .slick-prev:before,
   .slick-next:before {
     display: none;
   }
+
   .slick-slide {
     padding: 0 10px;
   }
+
   .slick-dots li {
     margin: 0 8px;
+
     button {
+
       &:hover,
       &:focus,
       &:active {
@@ -3596,6 +3681,7 @@ footer {
         }
       }
     }
+
     .slick-dots {
       li {
         &.slick-active {
@@ -3612,54 +3698,66 @@ footer {
     }
   }
 }
+
 #traffic-chart,
 #bar-chart-earning {
   direction: ltr;
 }
+
 .apexcharts-legend-marker {
   margin-left: 8px;
 }
+
 .pie-chart {
   .apexcharts-legend-text {
     line-height: 22px;
   }
+
   .apexcharts-legend-series {
     margin: 14px 4px !important;
   }
 }
+
 .datepicker-dashboard {
   box-shadow: none;
+
   &.card {
     &:hover {
       box-shadow: none;
     }
   }
+
   .react-datepicker {
     width: 100%;
     border: none;
     border-radius: 8px;
     padding: 10px;
-    box-shadow: 0 0 37px rgba(8,21,66,0.05);
+    box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
+
     button {
       &.react-datepicker__navigation {
         width: 32px;
-        border-radius: 5px; 
+        border-radius: 5px;
         user-select: none;
         background: var(--theme-deafult);
         top: 31px;
+
         &.react-datepicker__navigation--previous {
           left: 19px;
         }
+
         &.react-datepicker__navigation--next {
           right: 19px;
         }
+
         .react-datepicker__navigation-icon--previous {
           &::before {
             right: -4px;
-            top: 11px;  
+            top: 11px;
             border-color: $white;
           }
         }
+
         .react-datepicker__navigation-icon--next {
           &::before {
             left: -4px;
@@ -3669,24 +3767,29 @@ footer {
         }
       }
     }
+
     .react-datepicker__month-container {
       width: 100%;
       overflow: hidden;
-      .react-datepicker__header  {
+
+      .react-datepicker__header {
         background-color: $white;
         border-bottom: none;
         padding: 0;
+
         .react-datepicker__current-month {
           font-size: 20px;
           padding: 22px 9px;
           color: var(--theme-deafult);
           border-bottom: 1px solid $light-semi-gray;
         }
+
         .react-datepicker__day-names {
           display: flex;
           flex-wrap: wrap;
           font-size: 18px;
           margin: 30px 0;
+
           .react-datepicker__day-name {
             color: var(--theme-deafult);
             font-weight: bold;
@@ -3700,20 +3803,25 @@ footer {
           }
         }
       }
+
       .react-datepicker__month {
         height: 265px;
-        .react-datepicker__week {  
+
+        .react-datepicker__week {
           .react-datepicker__day {
             width: 13.28571%;
             height: 51px;
+
             &:hover {
               background-color: var(--theme-deafult);
               color: $white;
             }
+
             &.react-datepicker__day--outside-month {
               color: $grey-9;
             }
           }
+
           .react-datepicker__day--selected {
             border: 2px solid var(--theme-deafult);
             border-radius: 5px;
@@ -3726,11 +3834,13 @@ footer {
     }
   }
 }
+
 .btn-outline-light {
   &.active {
     color: $theme-font-color;
   }
 }
+
 .dashboard-slider {
   margin-bottom: 30px;
 }

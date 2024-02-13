@@ -25,7 +25,7 @@ const EmailChange = (props: emailChangeType) => {
                 event.preventDefault()
               }
             >
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <label className="form-label-title ">Credit Limit</label>
                 <input
                   className="form-control"
@@ -34,8 +34,8 @@ const EmailChange = (props: emailChangeType) => {
                   placeholder="Credit Limit"
                   value={profile?.creditLimit || ""}
                 />
-              </div>
-              <div className="mb-3">
+              </div> */}
+              {/* <div className="mb-3">
                 <label className="form-label-title ">Service Charges</label>
                 <input
                   className="form-control"
@@ -44,9 +44,11 @@ const EmailChange = (props: emailChangeType) => {
                   placeholder="Service Charges"
                   value={profile?.serviceCharges || ""}
                 />
-              </div>
+              </div> */}
               <div className="mb-3">
-                <label className="form-label-title ">Wallet</label>
+                <label className="form-label-title ">
+                  FlyGO Available Balance
+                </label>
                 <input
                   className="form-control"
                   type="text"

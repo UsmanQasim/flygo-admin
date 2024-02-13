@@ -5,7 +5,11 @@ import { bookingTableData } from "@/data/booking";
 import { Href } from "../../../utils/Constant";
 import DynamicFeatherIcon from "@/Common/DynamicFeatherIcon";
 import TooltipCommon from "@/Common/TooltipCommon";
-import { GetALLAgentBookings, GetAgentBookings } from "@/services/dashboard";
+import {
+  GetALLAgentBookings,
+  GetAgentBookings,
+  IGETALLAGENTBOOKINGDATA,
+} from "@/services/dashboard";
 import moment from "moment";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
@@ -13,10 +17,16 @@ import Col from "react-bootstrap/Col";
 import { Button, Container } from "react-bootstrap";
 
 const Booking = () => {
-  const [bookingData, setBookingData] = useState<any>([]);
+  const [bookingData, setBookingData] = useState<
+    IGETALLAGENTBOOKINGDATA[] | undefined
+  >([]);
   const [bookingID, setBookingID] = useState<number>();
   const [bookingIDModal, setBookingIDModal] = useState<any>();
   const [show, setShow] = useState(false);
+
+  const [totalCount, setTotalCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   const handleClose = () => setShow(false);
   const handleShow = (id: number) => {
@@ -29,25 +39,41 @@ const Booking = () => {
   useEffect(() => {
     const fetchData = () => {
       GetALLAgentBookings()
-        .then((res) => setBookingData(res))
+        .then((res) => {
+          if (res) {
+            if (res && res.totalCount) {
+              setBookingData(res.bookings);
+              setTotalCount(res.totalCount);
+            }
+          }
+        })
         .catch((error) => console.error("Error fetching booking data:", error));
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     if (bookingID) {
       const fetchData = () => {
         GetAgentBookings(bookingID)
-          .then((res) => setBookingIDModal(res))
+          .then((res) => {
+            if (res && res.totalCount) {
+              setBookingIDModal(res);
+              setTotalCount(res.totalCount);
+            }
+          })
           .catch((error) =>
             console.error("Error fetching booking data:", error)
           );
       };
       fetchData();
     }
-  }, [bookingID]);
+  }, [currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="container-fluid">
@@ -57,7 +83,7 @@ const Booking = () => {
             <div className="card-header  card-header--2">
               <h5>All Bookings</h5>
             </div>
-            <div className="card-body">
+            <div className="">
               <div>
                 <div className="table-responsive table-desi">
                   <table className="Booking-table table table-striped">
@@ -72,68 +98,71 @@ const Booking = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {bookingData?.bookings?.map(
-                        (data: any, index: number) => (
-                          <tr key={index}>
-                            <td>
-                              {/* <i className={`fa fa-${data.type}`}> </i> */}
-                              <a>
-                                <span className="d-block ">
-                                  {data.flight_no}
-                                </span>
-                              </a>
-                            </td>
-                            <td>
-                              <span className="">{data.origin} </span>
-                              <strong> To </strong>
-                              <span className=" "> {data.destination}</span>
-                            </td>
-                            <td>
-                              {moment(data.arrival_date_time).format(
-                                "MMMM Do YYYY, h:mm:ss A"
-                              )}
-                            </td>
-                            <td>
-                              {moment(data.depart_date_time).format(
-                                "MMMM Do YYYY, h:mm:ss A"
-                              )}
-                            </td>
-                            <td>
-                              <span
-                                className={`mt-2 p-2 text-white badge badge-${
-                                  data.status === "pending"
-                                    ? "primary"
-                                    : data.status === "Cancelled"
-                                    ? "secondary"
-                                    : "success"
-                                }`}
-                              >
-                                {data.status}
-                              </span>
-                            </td>
-                            <td>
-                              {/* <div id={`TooltipExample-${index + 1}`}>
+                      {bookingData?.map((data: any, index: number) => (
+                        <tr key={index}>
+                          <td>
+                            {/* <i className={`fa fa-${data.type}`}> </i> */}
+                            <a>
+                              <span className="d-block ">{data.flight_no}</span>
+                            </a>
+                          </td>
+                          <td>
+                            <span className="">{data.origin} </span>
+                            <strong> To </strong>
+                            <span className=" "> {data.destination}</span>
+                          </td>
+                          <td>
+                            {moment(data.arrival_date_time).format(
+                              "MMMM Do YYYY, h:mm:ss A"
+                            )}
+                          </td>
+                          <td>
+                            {moment(data.depart_date_time).format(
+                              "MMMM Do YYYY, h:mm:ss A"
+                            )}
+                          </td>
+                          <td>
+                            <span
+                              className={`mt-2 p-2 text-white badge badge-${
+                                data.status === "pending"
+                                  ? "primary"
+                                  : data.status === "Cancelled"
+                                  ? "secondary"
+                                  : "success"
+                              }`}
+                            >
+                              {data.status}
+                            </span>
+                          </td>
+                          <td>
+                            {/* <div id={`TooltipExample-${index + 1}`}>
                                 <DynamicFeatherIcon iconName="X" />
                               </div>
                               <TooltipCommon
                                 id={`TooltipExample-${index + 1}`}
                               /> */}
-                              <a
-                                onClick={() => handleShow(data?.itinerary_id)}
-                                style={{ cursor: "pointer", fontSize: "20px" }}
-                              >
-                                <i className="fa fa-eye" />
-                              </a>
-                            </td>
-                          </tr>
-                        )
-                      )}
+                            <a
+                              onClick={() => handleShow(data?.itinerary_id)}
+                              style={{ cursor: "pointer", fontSize: "20px" }}
+                            >
+                              <i className="fa fa-eye" />
+                            </a>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
-            <PaginationBox />
+            <div className="w-100 d-flex mt-4">
+              <PaginationBox
+                currentPage={currentPage}
+                totalCount={totalCount}
+                pageSize={pageSize}
+                onPageChange={handlePageChange}
+              />
+            </div>
           </div>
         </div>
       </div>

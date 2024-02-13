@@ -57,76 +57,86 @@ const BookingHistory = () => {
 
   return (
     <>
-      <div className="col-xxl-8">
+      {/* <div className="col-xxl-8"> */}
+      <div className="w-100">
         <div className="card ">
           <div className="card-header">
             <div className="card-header-title">
               <h5>Booking History</h5>
             </div>
           </div>
-          <div className="card-body overflow-auto" style={{ height: "372px" }}>
+          <div className="card-body ">
             <div className="table-responsive ">
               <table className=" dashboard-table table border-0 ">
                 <tbody>
-                  {bookingData?.bookings?.map((data: any, index: any) => (
-                    <tr key={index}>
-                      <td>
-                        {/* <span className="fw-bolder">{data.airline}</span> */}
-                        <p className="fw-bolder">{data.flight_no}</p>
-                      </td>
-                      <td>
-                        <span className="fw-bolder">{data.origin}</span>
-                      </td>
-                      <td>{/* <span>{data.origin}</span> */}</td>
-                      <td>
-                        <span>
-                          {" "}
-                          {flightTakeOff()}
-                          {moment(data.depart_date_time).format("MMMM Do YYYY")}
-                        </span>
-                      </td>
-                      <td>
-                        <span />
-                      </td>
-                      <td>
-                        <span>
-                          {flightLand()}
-                          {moment(data.arrival_date_time).format(
-                            "MMMM Do YYYY"
-                          )}
-                        </span>
-                      </td>
-                      <td>
-                        <span className="fw-bolder mt-2">
-                          {data.destination}
-                        </span>
-                      </td>
-                      <td>
-                        <span
-                          className={`mt-2 p-2 text-white badge badge-${
-                            data.status === "pending"
-                              ? "primary"
-                              : data.status === "Cancelled"
-                              ? "secondary"
-                              : "success"
-                          }`}
-                        >
-                          {data.status}
-                        </span>
-                      </td>
-                      <td className="pt-3">
-                        <a
-                          onClick={() => handleShow(data?.itinerary_id)}
-                          style={{ cursor: "pointer", fontSize: "20px" }}
-                        >
-                          <i className="fa fa-eye" />
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
+                  {bookingData?.bookings
+                    ?.slice(0, 5)
+                    .map((data: any, index: any) => (
+                      <tr key={index}>
+                        <td>
+                          {/* <span className="fw-bolder">{data.airline}</span> */}
+                          <p className="fw-bolder">{data.flight_no}</p>
+                        </td>
+                        <td>
+                          <span className="fw-bolder">{data.origin}</span>
+                        </td>
+                        <td>{/* <span>{data.origin}</span> */}</td>
+                        <td>
+                          <span>
+                            {" "}
+                            {flightTakeOff()}
+                            {moment(data.depart_date_time).format(
+                              "MMMM Do YYYY"
+                            )}
+                          </span>
+                        </td>
+                        <td>
+                          <span />
+                        </td>
+                        <td>
+                          <span>
+                            {flightLand()}
+                            {moment(data.arrival_date_time).format(
+                              "MMMM Do YYYY"
+                            )}
+                          </span>
+                        </td>
+                        <td>
+                          <span className="fw-bolder mt-2">
+                            {data.destination}
+                          </span>
+                        </td>
+                        <td>
+                          <span
+                            className={`mt-2 p-2 text-white badge badge-${
+                              data.status === "pending"
+                                ? "primary"
+                                : data.status === "Cancelled"
+                                ? "secondary"
+                                : "success"
+                            }`}
+                          >
+                            {data.status}
+                          </span>
+                        </td>
+                        <td className="pt-3">
+                          <a
+                            onClick={() => handleShow(data?.itinerary_id)}
+                            style={{ cursor: "pointer", fontSize: "20px" }}
+                          >
+                            <i className="fa fa-eye" />
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
+            <Link href={"/booking"}>
+              <button className="border mt-4 p-4 text-center w-100 rounded bg-primary ">
+                Show All Bookings
+              </button>
+            </Link>
           </div>
         </div>
       </div>

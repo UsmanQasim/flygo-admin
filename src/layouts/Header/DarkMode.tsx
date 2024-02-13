@@ -14,7 +14,7 @@ const DarkMode = () => {
   };
   return (
     <li>
-      <div className="mode">
+      {/* <div className="mode">
         {darkMode ? (
           <i
             className="fa fa-lightbulb-o"
@@ -23,7 +23,7 @@ const DarkMode = () => {
         ) : (
           <i className="fa fa-moon-o" onClick={() => DarkModeHandler("Moon")} />
         )}
-      </div>
+      </div> */}
     </li>
   );
 };

@@ -1,7 +1,6 @@
 import PaginationBox from "@/Common/PaginationBox";
 import ReviewUsers from "@/Common/ReviewUsers";
 
-
 const Reviews = () => {
   return (
     <div className="container-fluid">
@@ -15,7 +14,7 @@ const Reviews = () => {
           <ReviewUsers image={3} />
           <ReviewUsers image={4} />
         </div>
-        <PaginationBox />
+        {/* <PaginationBox /> */}
       </div>
     </div>
   );

@@ -13,10 +13,10 @@ const Dashboard: React.FC = () => {
     <div className="container-fluid">
       <div className="row">
         <GrowthCard />
-        <VisitorsChart />
-        <EarningChart />
+        {/* <VisitorsChart />
+        <EarningChart /> */}
         <BookingHistory />
-        <Calender />
+        {/* <Calender /> */}
         {/* <TrafficChart /> */}
         {/* error */}
         {/* <WorldMap /> */}

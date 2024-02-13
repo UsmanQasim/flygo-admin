@@ -30,7 +30,7 @@ const AllHotels = () => {
                 </div>
               </div>
             </div>
-            <PaginationBox />
+            {/* <PaginationBox /> */}
           </div>
         </div>
       </div>

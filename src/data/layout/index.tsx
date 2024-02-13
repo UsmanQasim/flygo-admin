@@ -14,11 +14,11 @@ export const messageBoxesData = [
 interface userProfile {
   icon: "User" | "Mail" | "FileText" | "Settings";
   title: string;
-  link:string
- }
- export const userProfileData: userProfile[] = [
-  { link:"/setting",icon: "User", title: "Account" },
-  { link:"/reviews",icon: "Mail", title: "Inbox" },
-  { link:"/booking",icon: "FileText", title: "Taskboard" },
-  { link:"/setting",icon: "Settings", title: "Settings" },
- ];
+  link: string;
+}
+export const userProfileData: userProfile[] = [
+  { link: "/setting", icon: "User", title: "Account" },
+  // { link:"/reviews",icon: "Mail", title: "Inbox" },
+  // { link: "/booking", icon: "FileText", title: "Taskboard" },
+  { link: "/setting", icon: "Settings", title: "Settings" },
+];

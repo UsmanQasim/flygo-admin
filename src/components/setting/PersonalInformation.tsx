@@ -23,23 +23,23 @@ const PersonalInformation = (props: personalinformationType) => {
             event.preventDefault()
           }
         >
-          <div className="personal-info">
+          {/* <div className="personal-info">
             <div className="personal-info__img">
-              {/* {profile?.logo ? (
+              {profile?.logo ? (
                 <Image
                   height={150}
                   width={150}
                   src={profile.logo}
                   alt="user4"
                 />
-              ) : ( */}
+              ) : (
               <Image
                 height={150}
                 width={150}
                 src={`${ImagePath}/users/4.jpg`}
                 alt="user4"
               />
-              {/* )} */}
+              )} 
             </div>
             <div className="  personal-info__uplode">
               <p>
@@ -75,7 +75,7 @@ const PersonalInformation = (props: personalinformationType) => {
                 </button>
               </Link>
             </div>
-          </div>
+          </div> */}
           <div className="row">
             <div className="col-sm-6">
               <label className="form-label-title mt-3">Full Name</label>

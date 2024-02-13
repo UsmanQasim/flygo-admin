@@ -29,7 +29,7 @@ const AllRestaurant = () => {
                 </div>
               </div>
             </div>
-            <PaginationBox />
+            {/* <PaginationBox /> */}
           </div>
         </div>
       </div>

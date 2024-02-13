@@ -11,7 +11,10 @@ const AllRestaurant = () => {
       <div className="row">
         <div className="col-sm-12">
           <div className="card">
-            <CommonCardHeader tittle="All Restaurant" navigate="/restaurant/addrestaurant"/>
+            <CommonCardHeader
+              tittle="All Restaurant"
+              navigate="/restaurant/addrestaurant"
+            />
             <div className="card-body">
               <div>
                 <div className="table-responsive table-desi">
@@ -33,28 +36,47 @@ const AllRestaurant = () => {
                         <tr key={index}>
                           <td>
                             <span>
-                              <Image height={45} width={70} src={`${ImagePath}/restaurant/${index + 1}.jpg`} alt="users"/>
+                              <Image
+                                height={45}
+                                width={70}
+                                src={`${ImagePath}/restaurant/${index + 1}.jpg`}
+                                alt="users"
+                              />
                             </span>
                           </td>
                           <td>
                             <a href={Href}>
-                              <span className="  d-block fw-bold ">{data.name}</span>
+                              <span className="  d-block fw-bold ">
+                                {data.name}
+                              </span>
                               <span>{data.location}</span>
                             </a>
                           </td>
                           <td>
-                            <span className={`badge badge-${data.type === "indian" ?"secondary":"primary"}`}>{data.type}</span>
+                            <span
+                              className={`badge badge-${
+                                data.type === "indian" ? "secondary" : "primary"
+                              }`}
+                            >
+                              {data.type}
+                            </span>
                           </td>
                           <td>{data.phone}</td>
                           <td>{data.email}</td>
                           <td>
-                            <Link href="/restaurant/restaurantdetail"><i className="fa fa-eye" /></Link>
+                            <Link href="/restaurant/restaurantdetail">
+                              <i className="fa fa-eye" />
+                            </Link>
                           </td>
                           <td>
-                            <a href={Href}><i className="fa fa-pencil-square-o" /></a>
+                            <a href={Href}>
+                              <i className="fa fa-pencil-square-o" />
+                            </a>
                           </td>
                           <td>
-                            <a href={Href}><i className="fa fa-trash-o" /></a>
+                            <a href={Href}>
+                              <i className="fa fa-trash-o" />
+                            </a>
                           </td>
                         </tr>
                       ))}
@@ -63,7 +85,7 @@ const AllRestaurant = () => {
                 </div>
               </div>
             </div>
-            <PaginationBox />
+            {/* <PaginationBox /> */}
           </div>
         </div>
       </div>
