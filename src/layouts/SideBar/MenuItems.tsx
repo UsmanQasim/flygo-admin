@@ -42,11 +42,17 @@ export const getSideBarItems = () => {
       icon: "Home",
       type: "link",
     },
-    agentMenuItem,
     {
       title: "Booking",
       url: `/booking`,
       icon: "Bookmark",
+      type: "link",
+    },
+    agentMenuItem,
+    {
+      title: "Book Flight",
+      url: `https://flygo-agent.vercel.app/en/home/flight`,
+      icon: "Star",
       type: "link",
     },
     {
