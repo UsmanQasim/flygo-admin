@@ -1,14 +1,21 @@
 "use client";
 import DropZoneCommon from "@/Common/DropZoneCommon";
-import { CompanyName, ContactNumber, EmailAddress, UploadItemImageHere, UserName, Website } from "@/utils/Constant";
+import {
+  CompanyName,
+  ContactNumber,
+  EmailAddress,
+  UploadItemImageHere,
+  UserName,
+  Website,
+} from "@/utils/Constant";
 import React from "react";
-
 
 const AddUserForm = () => {
   return (
     <form className="theme-form mega-form">
       <div className="mb-3">
-        <label className="form-label-title ">{UserName}</label>
+        {/* <label className="form-label-title ">{UserName}</label> */}
+        <label className="form-label-title ">Agent Name</label>
         <input className="form-control" type="text" placeholder="User Name" />
       </div>
       <div className="mb-3">
@@ -21,11 +28,19 @@ const AddUserForm = () => {
       </div>
       <div className="mb-3">
         <label className="form-label-title ">{ContactNumber}</label>
-        <input className="form-control" type="Number" placeholder="Contact number"/>
+        <input
+          className="form-control"
+          type="Number"
+          placeholder="Contact number"
+        />
       </div>
       <div className="mb-3">
         <label className="form-label-title ">{CompanyName}</label>
-        <input className="form-control" type="text" placeholder="Company Name"/>
+        <input
+          className="form-control"
+          type="text"
+          placeholder="Company Name"
+        />
       </div>
       <div className="mb-3">
         <label className="form-label-title ">{Website}</label>

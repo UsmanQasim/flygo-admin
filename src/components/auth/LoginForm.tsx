@@ -1,52 +1,80 @@
 "use client";
-import SocialIcons from "@/Common/SocialIcons";
 import { Href } from "@/utils/Constant";
-import Link from "next/link";
-import { ChangeEvent, FormEvent, useState } from "react";
-import Cookies from "js-cookie";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { login, loginAgent } from "@/services/login";
+import { setCookie } from "nookies";
 
 const LoginForm = () => {
   const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassWord, setShowPassWord] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const formSubmitHandle = async (event: { preventDefault: () => void }) => {
+  const formSubmitHandle = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = { email, password };
 
-    login(data).then((res) => {
-      if (res?.success) {
-        Cookies.set("userData", JSON.stringify(res.data));
-        Cookies.set("accessToken", JSON.stringify(res.data?.accessToken));
-        Cookies.set("token", JSON.stringify(true));
-        Cookies.set("user", JSON.stringify(true));
-        Cookies.set("userData", JSON.stringify(res.data));
+    try {
+      const res = await login(data);
+
+      if (
+        res?.success &&
+        res.data &&
+        res.data.accessToken &&
+        res.data.role &&
+        res.data.name
+      ) {
+        setCookie(null, "accessToken", res.data.accessToken, {
+          maxAge: 30 * 24 * 60 * 60, // 30 days
+          path: "/",
+        });
+        setCookie(null, "token", "true", { path: "/" });
+        setCookie(null, "user", "true", { path: "/" });
+        setCookie(null, "userData", JSON.stringify(res.data.name), {
+          path: "/",
+        });
+        setCookie(null, "role", res.data.role, { path: "/" });
         router.push("/dashboard");
         toast.success("Login successful");
       } else if (!res?.success) {
-        loginAgent(data).then((res) => {
-          if (res?.success) {
-            Cookies.set("accessToken", JSON.stringify(res.data?.accessToken));
-            Cookies.set("token", JSON.stringify(true));
-            Cookies.set("user", JSON.stringify(false));
-            Cookies.set("userData", JSON.stringify(res.data));
-            router.push("/dashboard");
-            toast.success("Login successful");
-          }
-        });
+        const agentRes = await loginAgent(data);
+        if (
+          agentRes?.success &&
+          agentRes.data &&
+          agentRes.data.accessToken &&
+          agentRes.data.role
+        ) {
+          setCookie(null, "accessToken", agentRes.data.accessToken, {
+            maxAge: 30 * 24 * 60 * 60, // 30 days
+            path: "/",
+          });
+          setCookie(null, "token", "true", { path: "/" });
+          setCookie(null, "user", "false", { path: "/" });
+          setCookie(null, "userData", JSON.stringify(agentRes.data), {
+            path: "/",
+          });
+          setCookie(null, "role", agentRes.data.role, { path: "/" });
+          router.push("/dashboard");
+          toast.success("Login successful");
+        }
       } else {
+        toast.error("Login Failed");
         throw new Error("Invalid credentials");
       }
-    });
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("Invalid credentials");
+    }
   };
 
   return (
-    <form className="theme-form" method="post" onSubmit={formSubmitHandle}>
+    <form
+      className="theme-form shawdow-lg"
+      method="post"
+      onSubmit={formSubmitHandle}
+    >
       <h4>Sign in to account</h4>
       <p>Enter your email &amp; password to login</p>
       <div className="form-group">
@@ -66,7 +94,7 @@ const LoginForm = () => {
         <label className="col-form-label form-label-title ">Password</label>
         <div className="form-input position-relative">
           <input
-            type={showPassWord ? "text" : "password"}
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             name="password"
@@ -75,8 +103,8 @@ const LoginForm = () => {
           />
           <div className="show-hide">
             <span
-              onClick={() => setShowPassWord(!showPassWord)}
-              className={!showPassWord ? "show" : ""}
+              onClick={() => setShowPassword(!showPassword)}
+              className={!showPassword ? "show" : ""}
             />
           </div>
         </div>

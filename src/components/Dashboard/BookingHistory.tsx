@@ -1,9 +1,4 @@
-import {
-  bookingHistoryTableData,
-  flightLand,
-  bookingHistoryData,
-  bookingDetailData,
-} from "@/data/Dashboard";
+import { flightLand } from "@/data/Dashboard";
 import { ImagePath } from "@/utils/Constant";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -15,11 +10,22 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Bold } from "react-feather";
 import Button from "react-bootstrap/Button";
-import { GetALLAgentBookings, GetAgentBookings } from "@/services/dashboard";
+import {
+  GetALLAgentBookings,
+  GetAdminBookings,
+  GetAgentBookingById,
+  IDashboardBookingData,
+} from "@/services/dashboard";
 import moment from "moment";
+import { parseCookies } from "nookies";
 
 const BookingHistory = () => {
-  const [bookingData, setBookingData] = useState<any>([]);
+  const cookies = parseCookies();
+  const role = cookies.role;
+
+  const [bookingData, setBookingData] = useState<
+    IDashboardBookingData[] | undefined
+  >([]);
   const [bookingID, setBookingID] = useState<any>();
   const [bookingIDModal, setBookingIDModal] = useState<any>();
   const [show, setShow] = useState(false);
@@ -33,19 +39,32 @@ const BookingHistory = () => {
   };
 
   useEffect(() => {
-    const fetchData = () => {
-      GetALLAgentBookings()
-        .then((res) => setBookingData(res))
-        .catch((error) => console.error("Error fetching booking data:", error));
+    const fetchData = async () => {
+      try {
+        if (role === "admin") {
+          const adminBookings = await GetAdminBookings();
+          if (adminBookings && adminBookings.totalCount) {
+            setBookingData(adminBookings.bookings);
+          }
+        } else {
+          const agentBookings = await GetALLAgentBookings();
+          if (agentBookings && agentBookings.totalCount) {
+            setBookingData(agentBookings.bookings);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching booking data:", error);
+      }
     };
 
+    console.log("Booking DATA", bookingData);
     fetchData();
-  }, []);
+  }, [role]);
 
   useEffect(() => {
     if (bookingID) {
       const fetchData = () => {
-        GetAgentBookings(bookingID)
+        GetAgentBookingById(bookingID)
           .then((res) => setBookingIDModal(res))
           .catch((error) =>
             console.error("Error fetching booking data:", error)
@@ -69,66 +88,62 @@ const BookingHistory = () => {
             <div className="table-responsive ">
               <table className=" dashboard-table table border-0 ">
                 <tbody>
-                  {bookingData?.bookings
-                    ?.slice(0, 5)
-                    .map((data: any, index: any) => (
-                      <tr key={index}>
-                        <td>
-                          {/* <span className="fw-bolder">{data.airline}</span> */}
-                          <p className="fw-bolder">{data.flight_no}</p>
-                        </td>
-                        <td>
-                          <span className="fw-bolder">{data.origin}</span>
-                        </td>
-                        <td>{/* <span>{data.origin}</span> */}</td>
-                        <td>
-                          <span>
-                            {" "}
-                            {flightTakeOff()}
-                            {moment(data.depart_date_time).format(
-                              "MMMM Do YYYY"
-                            )}
-                          </span>
-                        </td>
-                        <td>
-                          <span />
-                        </td>
-                        <td>
-                          <span>
-                            {flightLand()}
-                            {moment(data.arrival_date_time).format(
-                              "MMMM Do YYYY"
-                            )}
-                          </span>
-                        </td>
-                        <td>
-                          <span className="fw-bolder mt-2">
-                            {data.destination}
-                          </span>
-                        </td>
-                        <td>
-                          <span
-                            className={`mt-2 p-2 text-white badge badge-${
-                              data.status === "pending"
-                                ? "primary"
-                                : data.status === "Cancelled"
-                                ? "secondary"
-                                : "success"
-                            }`}
-                          >
-                            {data.status}
-                          </span>
-                        </td>
-                        <td className="pt-3">
-                          <a
-                            onClick={() => handleShow(data?.itinerary_id)}
-                            style={{ cursor: "pointer", fontSize: "20px" }}
-                          >
-                            <i className="fa fa-eye" />
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
+                  {bookingData?.slice(0, 5).map((data: any, index: any) => (
+                    <tr key={index}>
+                      <td>
+                        {/* <span className="fw-bolder">{data.airline}</span> */}
+                        <p className="fw-bolder">{data.flight_no}</p>
+                      </td>
+                      <td>
+                        <span className="fw-bolder">{data.origin}</span>
+                      </td>
+                      <td>{/* <span>{data.origin}</span> */}</td>
+                      <td>
+                        <span>
+                          {" "}
+                          {flightTakeOff()}
+                          {moment(data.depart_date_time).format("MMMM Do YYYY")}
+                        </span>
+                      </td>
+                      <td>
+                        <span />
+                      </td>
+                      <td>
+                        <span>
+                          {flightLand()}
+                          {moment(data.arrival_date_time).format(
+                            "MMMM Do YYYY"
+                          )}
+                        </span>
+                      </td>
+                      <td>
+                        <span className="fw-bolder mt-2">
+                          {data.destination}
+                        </span>
+                      </td>
+                      <td>
+                        <span
+                          className={`mt-2 p-2 text-white badge badge-${
+                            data.status === "pending"
+                              ? "primary"
+                              : data.status === "Cancelled"
+                              ? "secondary"
+                              : "success"
+                          }`}
+                        >
+                          {data.status}
+                        </span>
+                      </td>
+                      <td className="pt-3">
+                        <a
+                          onClick={() => handleShow(data?.itinerary_id)}
+                          style={{ cursor: "pointer", fontSize: "20px" }}
+                        >
+                          <i className="fa fa-eye" />
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

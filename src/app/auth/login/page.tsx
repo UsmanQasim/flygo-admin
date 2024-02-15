@@ -29,7 +29,7 @@ const Login = () => {
                   />
                 </Link>
               </div>
-              <div className="login-main">
+              <div className="login-main shadow">
                 <LoginForm />
               </div>
             </div>

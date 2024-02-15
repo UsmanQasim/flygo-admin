@@ -18,15 +18,15 @@ export const getSideBarItems = () => {
     type: "sub",
     menu: [
       {
-        url: "",
+        url: "/users/allusers",
         title: "All Agents",
         type: "link",
       },
-      {
-        url: "/users/allusers",
-        title: "All Users",
-        type: "link",
-      },
+      // {
+      //   url: "/users/allusers",
+      //   title: "All Users",
+      //   type: "link",
+      // },
       {
         url: "/users/adduser",
         title: "Add New Agent",

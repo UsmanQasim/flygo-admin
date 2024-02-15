@@ -11,7 +11,7 @@ const AddUser = () => {
             <div className="col-sm-12">
               <div className="card">
                 <div className="card-header">
-                  <h5>Add New User</h5>
+                  <h5>Add New Agent</h5>
                 </div>
                 <div className="card-body">
                   <AddUserForm />
