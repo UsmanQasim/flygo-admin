@@ -19,7 +19,7 @@ export const getSideBarItems = () => {
 
   if (userData) console.log(JSON.parse(userData));
 
-  const agentMenuItem = role && {
+  const agentMenuItem = role === "admin" && {
     title: "agent",
     icon: "Users",
     type: "sub",
