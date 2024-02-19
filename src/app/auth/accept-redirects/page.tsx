@@ -1,35 +1,29 @@
-// "use client";
+"use client";
+import { useEffect } from "react";
+import { parseCookies, setCookie } from "nookies";
+import { useSearchParams } from "next/navigation";
+import Loader from "@/layouts/Loader";
 
-// import { useEffect } from "react";
+function AcceptRedirects() {
+  const searchParams = useSearchParams();
+  const token = searchParams.get("__t") as string;
 
-// import { useSearchParams } from "next/navigation";
-// import { useCookies } from "next-client-cookies";
+  useEffect(() => {
+    const decodedToken = decodeURIComponent(token);
+    if (decodedToken) {
+      setCookie(null, "accessToken", decodedToken, { secure: true });
+      setCookie(null, "token", "true", { path: "/", secure: true });
+      window.location.href = "/booking";
+    } else {
+      window.location.href = "/";
+    }
+  }, [token]);
 
-// function AcceptRedirects() {
-//   const cookies = useCookies();
-//   const searchParams = useSearchParams();
+  return (
+    <div>
+      <Loader />
+    </div>
+  );
+}
 
-//   const token = searchParams.get("__t") as string;
-
-//   useEffect(() => {
-//     const decodedToken = decodeURI(token);
-//     if (decodedToken) {
-//       cookies.set("accessToken", `"${decodeURI(token)}"`, { secure: true });
-//       cookies.set("token", "true", { path: "/", secure: true });
-
-//       window.location.href = "/booking";
-//     } else {
-//       window.location.href = "/";
-//     }
-//   }, [token]);
-
-//   return <div>Please wait...</div>;
-// }
-
-// export default AcceptRedirects;
-
-const page = () => {
-  return <div>page</div>;
-};
-
-export default page;
+export default AcceptRedirects;

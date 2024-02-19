@@ -3,14 +3,21 @@ import { MenuItem } from "./SideBarInterFace";
 import Cookies from "js-cookie";
 
 export const getSideBarItems = () => {
-  const userDataString = Cookies.get("user");
-  const [role, setRole] = useState<boolean>(false); // Assuming role is boolean
+  const userCookie = Cookies.get("user") || null;
+  const tokenCookie = Cookies.get("token") || null;
+  const accessTokenCookie = Cookies.get("accessToken") || null;
+  const userDataCookie = Cookies.get("userData") || null;
+  const roleCookie = Cookies.get("role") || null;
 
-  useEffect(() => {
-    if (userDataString) {
-      setRole(JSON.parse(userDataString));
-    }
-  }, [userDataString]);
+  const [role, setRole] = useState<string | null>(roleCookie);
+  const [token, setToken] = useState<string | null>(tokenCookie);
+  const [accessToken, setAccessToken] = useState<string | null>(
+    accessTokenCookie
+  );
+  const [userData, setUserData] = useState<string | null>(userDataCookie);
+  const [user, setUser] = useState<string | null>(userCookie);
+
+  if (userData) console.log(JSON.parse(userData));
 
   const agentMenuItem = role && {
     title: "agent",
@@ -22,11 +29,6 @@ export const getSideBarItems = () => {
         title: "All Agents",
         type: "link",
       },
-      // {
-      //   url: "/users/allusers",
-      //   title: "All Users",
-      //   type: "link",
-      // },
       {
         url: "/users/adduser",
         title: "Add New Agent",
@@ -51,7 +53,9 @@ export const getSideBarItems = () => {
     agentMenuItem,
     {
       title: "Book Flight",
-      url: `https://flygo-agent.vercel.app/en/home/flight`,
+      url: `https://flygo-agent.vercel.app/en/home/flight?data=${encodeURIComponent(
+        JSON.stringify({ role, token, accessToken, userData, user })
+      )}`,
       icon: "Star",
       type: "link",
     },
