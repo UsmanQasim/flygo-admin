@@ -43,7 +43,8 @@ const UserProfile = () => {
           height={40}
           width={40}
           className="user-profile rounded-circle"
-          src={`${ImagePath}/users/4.jpg`}
+          // src={`${ImagePath}/users/4.jpg`}
+          src={`${ImagePath}/new/avatar.png`}
           alt="profile-picture"
         />
         <div className="user-name-hide media-body d-flex gap-1 flex-column">
