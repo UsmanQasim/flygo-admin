@@ -36,12 +36,12 @@ export const MENUITEMS: MenuItem[] = [
     icon: "Settings",
     type: "link",
   },
-  {
-    title: "Log Out",
-    url: `/login`,
-    icon: "LogIn",
-    type: "link",
-  },
+  // {
+  //   title: "Log Out",
+  //   url: `/auth/login`,
+  //   icon: "LogIn",
+  //   type: "link",
+  // },
 ].filter(Boolean) as MenuItem[];
 
 // {

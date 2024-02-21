@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { SideBarInterFace } from "./SideBarInterFace";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import DynamicFeatherIcon from "@/Common/DynamicFeatherIcon";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 const Menulist = ({
   menu,
@@ -13,6 +15,15 @@ const Menulist = ({
   const ActiveNavLinkUrl = (path: any, active: any = 0) => {
     const pathname = usePathname();
     return pathname === path ? (active ? active : true) : "";
+  };
+  const router = useRouter();
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    Cookies.remove("user");
+    Cookies.remove("userData");
+    router.push("/auth/login");
+    toast.error("logout successful");
   };
 
   return (
