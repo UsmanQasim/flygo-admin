@@ -1,7 +1,14 @@
-import { IAgent } from "@/services/users";
+import {
+  IAgent,
+  ICreditLimitProps,
+  ITopUpProps,
+  TopUpAgent,
+  UpdateCreditLimit,
+} from "@/services/users";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, ToggleButton } from "react-bootstrap";
+import { toast } from "react-toastify";
 import {
   Modal,
   ModalHeader,
@@ -14,6 +21,7 @@ import {
 type UserDetailModalProps = {
   userData: IAgent;
   modalOpen: boolean;
+  fetchData: Function;
   toggleModal: () => void;
 };
 
@@ -24,8 +32,17 @@ interface SwitchState {
 const UserDetailModal = ({
   userData,
   modalOpen,
+  fetchData,
   toggleModal,
 }: UserDetailModalProps) => {
+  const [updated, setUpdated] = useState<boolean>(false);
+  const [balance, setBalance] = useState<number>();
+  const [creditLimit, setCreditLimit] = useState<string>("");
+
+  useEffect(() => {
+    setBalance(0);
+  }, [userData]);
+
   const [switches, setSwitches] = useState<SwitchState>({
     "custom-switch-1": false,
     "custom-switch-2": false,
@@ -40,6 +57,32 @@ const UserDetailModal = ({
       ...prevState,
       [id]: checked,
     }));
+  };
+
+  const handleAgentTopUp = ({
+    agent_id,
+    type,
+    balance,
+    description,
+  }: ITopUpProps) => {
+    const data = { agent_id, type, balance, description };
+    TopUpAgent(data)
+      .then((res) => {
+        toast.success("TopUp Success"), fetchData(userData.id);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const handleAgentCreditLimit = ({
+    agent_id,
+    creditLimit,
+  }: ICreditLimitProps) => {
+    const data = { agent_id, creditLimit };
+    UpdateCreditLimit(data)
+      .then((res) => {
+        toast.success("Credit Limit Updated"), fetchData(userData.id);
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -245,6 +288,51 @@ const UserDetailModal = ({
             checked={switches["custom-switch-6"]}
             onChange={handleChange}
           />
+        </div>
+        <hr />
+        <div className="col-md-6">
+          <div className="d-flex justify-content-between">
+            <input
+              className="rounded p-2"
+              type="number"
+              placeholder="Amount"
+              value={balance}
+              onChange={(e) => setBalance(parseFloat(e.target.value))}
+            />
+            <button
+              className="btn border"
+              onClick={() =>
+                handleAgentTopUp({
+                  agent_id: userData.id,
+                  type: "credit",
+                  balance: balance as number,
+                  description: `${balance} SAR topped up by admin`,
+                })
+              }
+            >
+              Top-Up Wallet
+            </button>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="d-flex justify-content-between">
+            <input
+              className="rounded p-2"
+              placeholder="Limit Amount"
+              onChange={(e) => setCreditLimit(e.target.value)}
+            />
+            <button
+              className="btn border"
+              onClick={() =>
+                handleAgentCreditLimit({
+                  agent_id: userData.id,
+                  creditLimit: creditLimit,
+                })
+              }
+            >
+              Update Credit Limit
+            </button>
+          </div>
         </div>
       </ModalBody>
       <ModalFooter>

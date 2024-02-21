@@ -55,3 +55,50 @@ export const GetAgentByAgentId = async (id: number) => {
   const response = await Axios.get<IAgentApiResponse>(`/admin/agents/${id}`);
   return response.data.success && response.data.data;
 };
+
+//
+
+interface ITopUpResponse {
+  success: true;
+  message: string;
+  data: {
+    id: number;
+    trx_id: string;
+    agentId: number;
+    topped_up_by: number;
+    balance: number;
+    description: number;
+    transaction_type: number;
+    updatedAt: Date | string;
+    createdAt: Date | string;
+  };
+}
+
+export interface ITopUpProps {
+  agent_id: number;
+  type: string;
+  balance: number;
+  description: string;
+}
+
+export const TopUpAgent = async (data: ITopUpProps) => {
+  const response = await Axios.post<ITopUpResponse>(
+    "/admin/agents/topup",
+    data
+  );
+  return;
+};
+
+//
+export interface ICreditLimitProps {
+  creditLimit: string;
+  agent_id: number;
+}
+
+export const UpdateCreditLimit = async (data: ICreditLimitProps) => {
+  const response = await Axios.put<ITopUpResponse>(
+    "/admin/agents/creditLimit",
+    data
+  );
+  return;
+};

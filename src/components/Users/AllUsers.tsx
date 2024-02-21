@@ -12,16 +12,17 @@ const AllUsersTable = ({ agents }: AllUserTableProps) => {
   const [show, setShow] = useState(false);
 
   // Get AGENT BY AGENT ID
+  const fetchData = (agentId: number) => {
+    GetAgentByAgentId(agentId)
+      .then((res) => {
+        if (res) setAgentIdModal(res);
+      })
+      .catch((error) => console.error("Error fetching Agent data:", error));
+  };
+
   useEffect(() => {
     if (agentId) {
-      const fetchData = () => {
-        GetAgentByAgentId(agentId)
-          .then((res) => {
-            if (res) setAgentIdModal(res);
-          })
-          .catch((error) => console.error("Error fetching Agent data:", error));
-      };
-      fetchData();
+      fetchData(agentId);
     }
   }, [agentId]);
 
@@ -88,6 +89,7 @@ const AllUsersTable = ({ agents }: AllUserTableProps) => {
       {agentIdModal ? (
         <UserDetailModal
           userData={agentIdModal}
+          fetchData={(id: number) => fetchData(id)}
           modalOpen={show}
           toggleModal={() => setShow(false)}
         />
